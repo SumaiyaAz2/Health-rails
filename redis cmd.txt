@@ -1,0 +1,9 @@
+To Install WSL:
+wsl --install
+
+
+To start WSL and then Redis:
+wsl.exe
+sudo service redis-server start
+redis-cli
+ping

@@ -1,0 +1,2 @@
+class RecordBlock < ApplicationRecord
+end
