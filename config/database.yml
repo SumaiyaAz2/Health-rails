@@ -79,5 +79,7 @@ test:
 #
 production:
   <<: *default
-  database: health_rails_production
   url: <%= ENV['DATABASE_URL'] %>
+  database: health_rails_production
+  username: health_rails
+  password: <%= ENV["HEALTH_RAILS_DATABASE_PASSWORD"] %>
