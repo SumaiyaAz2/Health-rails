@@ -1,7 +1,7 @@
 # setup the database
 databases:
  - name: health_records_api
- ipAllowList: []
+   ipAllowList: []
 
 services:
   # redis for cache and bg jobs
