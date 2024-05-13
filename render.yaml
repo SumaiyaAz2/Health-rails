@@ -1,8 +1,7 @@
 # setup the database
 databases:
-  - name: health_rails_production
-    databaseName: health_rails_production
-    user: health_rails
+  - name: health_records_api
+  ipAllowList: []
 
 services:
   # redis for cache and bg jobs
@@ -23,7 +22,7 @@ services:
       # give access to db
       - key: DATABASE_URL
         fromDatabase:
-          name: health_rails_production
+          name: health_records_api
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
@@ -43,7 +42,7 @@ services:
       # give access to db
       - key: DATABASE_URL
         fromDatabase:
-          name: health_rails_production
+          name: health_records_api
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
@@ -58,11 +57,11 @@ services:
     name: Health-rails
     env: ruby
     buildCommand: './bin/render-build.sh'
-    startCommand: 'bundle exec puma -C config/puma.rb -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}'
+    startCommand: 'bundle exec puma -C config/puma.rb'
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: health_rails_production
+          name: health_records_api
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
