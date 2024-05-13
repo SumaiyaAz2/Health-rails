@@ -33248,3 +33248,141 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 143ms (Views: 21.8ms | ActiveRecord: 0.0ms | Allocations: 4839)
 
 
+Started POST "/login" for ::1 at 2024-05-13 04:28:13 +0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SigninController#create as HTML
+  Parameters: {"license"=>"new0012@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."license" = $1 LIMIT $2[0m  [["license", "new0012@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:5:in `create'
+Completed 404 Not Found in 499ms (Views: 0.2ms | ActiveRecord: 5.4ms | Allocations: 17125)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/doctor/register" for ::1 at 2024-05-13 04:32:38 +0600
+Processing by SignupController#create as */*
+  Parameters: {"user"=>{"email"=>"test@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "license"=>"A1B2C3"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."license" = $1 LIMIT $2[0m  [["license", "A1B2C3"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "license", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "test@test.com"], ["password_digest", "[FILTERED]"], ["license", "A1B2C3"], ["created_at", "2024-05-12 22:32:39.260628"], ["updated_at", "2024-05-12 22:32:39.260628"]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+Completed 500 Internal Server Error in 265ms (ActiveRecord: 5.7ms | Allocations: 14137)
+
+
+  
+RedisClient::CannotConnectError (Connection refused - connect(2) for 127.0.0.1:6379):
+  
+Started POST "/doctor/register" for ::1 at 2024-05-13 04:34:59 +0600
+Processing by SignupController#create as */*
+  Parameters: {"user"=>{"email"=>"test@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "license"=>"A1B2C3"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."license" = $1 LIMIT $2[0m  [["license", "A1B2C3"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 238ms (Views: 0.1ms | ActiveRecord: 2.8ms | Allocations: 4155)
+
+
+Started POST "/doctor/register" for ::1 at 2024-05-13 04:35:21 +0600
+Processing by SignupController#create as */*
+  Parameters: {"user"=>{"email"=>"test2@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "license"=>"A1B2C3D4"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test2@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."license" = $1 LIMIT $2[0m  [["license", "A1B2C3D4"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "license", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "test2@test.com"], ["password_digest", "[FILTERED]"], ["license", "A1B2C3D4"], ["created_at", "2024-05-12 22:35:22.292595"], ["updated_at", "2024-05-12 22:35:22.292595"]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+Completed 200 OK in 205ms (Views: 0.1ms | ActiveRecord: 4.3ms | Allocations: 3790)
+
+
+Started POST "/login" for ::1 at 2024-05-13 04:35:36 +0600
+Processing by SigninController#create as HTML
+  Parameters: {"license"=>"A1B2C3D4", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."license" = $1 LIMIT $2[0m  [["license", "A1B2C3D4"], ["LIMIT", 1]]
+  ↳ app/controllers/signin_controller.rb:5:in `create'
+Completed 200 OK in 190ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 935)
+
+
+Started POST "/patients/new" for ::1 at 2024-05-13 04:35:47 +0600
+Processing by PatientsController#create as HTML
+  Parameters: {"patient"=>{"name"=>"Aakash", "contact"=>"12342491278", "address"=>"Section-11; Block-B; Line-1; House-59", "nid"=>"121112"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/patients_controller.rb:16:in `create'
+  [1m[36mPatient Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "patients" WHERE "patients"."nid" = $1 LIMIT $2[0m  [["nid", "121112"], ["LIMIT", 1]]
+  ↳ app/controllers/patients_controller.rb:16:in `create'
+  [1m[36mPatient Create (0.6ms)[0m  [1m[32mINSERT INTO "patients" ("name", "contact", "address", "nid", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Aakash"], ["contact", "12342491278"], ["address", "Section-11; Block-B; Line-1; House-59"], ["nid", "121112"], ["user_id", 2], ["created_at", "2024-05-12 22:35:47.733912"], ["updated_at", "2024-05-12 22:35:47.733912"]]
+  ↳ app/controllers/patients_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/patients_controller.rb:16:in `create'
+Completed 201 Created in 141ms (Views: 0.3ms | ActiveRecord: 7.3ms | Allocations: 12987)
+
+
+Started POST "/records/new" for ::1 at 2024-05-13 04:35:56 +0600
+Processing by RecordsController#create as HTML
+  Parameters: {"record"=>{"medicine"=>"Losectil", "disease"=>"Gastric", "nid"=>"121112"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/records_controller.rb:21:in `create'
+  [1m[36mRecordBlock Load (0.3ms)[0m  [1m[34mSELECT "record_blocks".* FROM "record_blocks" ORDER BY "record_blocks"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/records_controller.rb:25:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/records_controller.rb:50:in `create'
+  [1m[36mPatient Load (0.2ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/records_controller.rb:50:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/records_controller.rb:50:in `create'
+  [1m[36mRecord Create (0.6ms)[0m  [1m[32mINSERT INTO "records" ("disease", "medicine", "patient_id", "user_id", "created_at", "updated_at", "nid") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["disease", "Gastric"], ["medicine", "Losectil"], ["patient_id", 1], ["user_id", 2], ["created_at", "2024-05-12 22:35:56.542058"], ["updated_at", "2024-05-12 22:35:56.542058"], ["nid", "121112"]]
+  ↳ app/controllers/records_controller.rb:50:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/records_controller.rb:50:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/records_controller.rb:50:in `create'
+  [1m[36mRecordBlock Create (1.7ms)[0m  [1m[32mINSERT INTO "record_blocks" ("hashh", "previous_hash", "created_at", "updated_at", "record") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["hashh", "1307390714196705057"], ["previous_hash", "0"], ["created_at", "2024-05-12 22:35:56.546198"], ["updated_at", "2024-05-12 22:35:56.546198"], ["record", "{\"disease\"=>\"Gastric\", \"medicine\"=>\"Losectil\", \"nid\"=>\"121112\"}"]]
+  ↳ app/controllers/records_controller.rb:50:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/records_controller.rb:50:in `create'
+Completed 200 OK in 350ms (Views: 0.1ms | ActiveRecord: 8.8ms | Allocations: 25491)
+
+
+Started POST "/patients/find" for ::1 at 2024-05-13 04:36:01 +0600
+Processing by PatientsController#search as HTML
+  Parameters: {"nid"=>"121112"}
+  [1m[36mPatient Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "patients" WHERE "patients"."nid" = $1 LIMIT $2[0m  [["nid", "121112"], ["LIMIT", 1]]
+  ↳ app/controllers/patients_controller.rb:26:in `search'
+  [1m[36mPatient Load (0.1ms)[0m  [1m[34mSELECT "patients".* FROM "patients" WHERE "patients"."nid" = $1 LIMIT $2[0m  [["nid", "121112"], ["LIMIT", 1]]
+  ↳ app/controllers/patients_controller.rb:27:in `search'
+  [1m[36mRecord Load (0.2ms)[0m  [1m[34mSELECT "records".* FROM "records" WHERE "records"."nid" = $1[0m  [["nid", "121112"]]
+  ↳ app/controllers/patients_controller.rb:29:in `search'
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.7ms | Allocations: 2104)
+
+
+Started POST "/doctor/register" for ::1 at 2024-05-14 05:29:56 +0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SignupController#create as */*
+  Parameters: {"user"=>{"email"=>"test2@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "license"=>"A1B2C3D4"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test2@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."license" = $1 LIMIT $2[0m  [["license", "A1B2C3D4"], ["LIMIT", 1]]
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/signup_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 725ms (Views: 0.2ms | ActiveRecord: 19.4ms | Allocations: 26572)
+
+
