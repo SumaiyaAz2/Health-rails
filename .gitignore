@@ -3,3 +3,4 @@ config/credentials/production.key
 
 /config/master.key
 log/development.log
+/tmp
